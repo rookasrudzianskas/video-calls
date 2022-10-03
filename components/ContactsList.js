@@ -4,8 +4,8 @@ const ContactsList = () => {
     const contacts = ['Rokas', 'Tom', 'James', 'Steve', 'Jen', 'Kukulis'];
     return (
         <View>
-            <FlatList data={contacts} renderItem={() => {
-                return <Text className="text-black">Contact</Text>
+            <FlatList data={contacts} renderItem={({item}) => {
+                return <Text className="text-black">{item}</Text>
             }} />
         </View>
     );
