@@ -1,11 +1,12 @@
 import {Text, View, StyleSheet, FlatList} from 'react-native';
+import ContactsData from '../data/contacts.json';
 
 const ContactsList = () => {
-    const contacts = ['Rokas', 'Tom', 'James', 'Steve', 'Jen', 'Kukulis'];
+    // const contacts = ['Rokas', 'Tom', 'James', 'Steve', 'Jen', 'Kukulis'];
     return (
         <View className="">
-            <FlatList data={contacts} renderItem={({item}) => {
-                return <Text className="text-black text-lg">{item}</Text>
+            <FlatList data={ContactsData} renderItem={({item}) => {
+                return <Text className="text-black text-lg">{item.user_display_name}</Text>
             }}
             ItemSeparatorComponent={() => (
                 <View style={{ backgroundColor: "#f0f0f0", height: 1 }} />
