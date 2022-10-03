@@ -5,9 +5,10 @@ import HomeScreen from "./screens/HomeScreen";
 export default function App() {
   return (
       <SafeAreaView className="">
-          <Text>Hello</Text>
-          <HomeScreen />
-        <StatusBar style="auto" />
+          <View className="p-[15px]">
+              <HomeScreen />
+              <StatusBar style="auto" />
+          </View>
       </SafeAreaView>
   );
 }
