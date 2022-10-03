@@ -17,7 +17,7 @@ const ContactsScreen = () => {
             </View>
             <View className="flex-row items-center bg-gray-200 py-1 rounded-md space-x-2">
                 <Ionicons name="search" size={24} color="gray" className="ml-2" style={{marginLeft: 10}}/>
-                <TextInput placeholder={"Search"} />
+                <TextInput value={searchTerm} onChangeText={(e) => setSearchTerm(e)} placeholder={"Search"} />
             </View>
             <FlatList data={ContactsData} renderItem={({item}) => {
                 return <Text className="text-black text-lg">{item.user_display_name}</Text>
