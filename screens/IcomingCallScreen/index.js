@@ -17,9 +17,11 @@ const IncomingCallScreen = () => {
     const navigation = useNavigation();
     const route = useRoute();
     const {call} = route.params;
-    const [caller, setCaller] = useState(null);
+    const [caller, setCaller] = useState('');
 
     useEffect(() => {
+        setCaller(call.getEndpoints()[0].displayName);
+
         call.on(Voximplant.CallEvents.Disconnected, callEvent => {
             // setCallStatus('Disconnected');
             navigation.navigate('ContactsScreen');
@@ -43,7 +45,7 @@ const IncomingCallScreen = () => {
     return (
         <ImageBackground source={BackgroundIos} resizeMode={"cover"} className="w-full h-full">
             <View className="mt-32 flex-1 items-center">
-                <Text className="text-2xl text-white font-bold text-center">Rokas //:</Text>
+                <Text className="text-2xl text-white font-bold text-center">{caller} //:</Text>
                 <View className="flex-row items-center mt-1 space-x-1">
                     <FontAwesome5 name="whatsapp-square" size={17} color="green" />
                     <Text className="text-[19px] text-gray-300 font-[500] animate-pulse">BoringApp Video...</Text>
