@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Text, View, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
 import {Voximplant} from 'react-native-voximplant';
 import {useNavigation} from "@react-navigation/native";
+import {ACC_NAME, APP_NAME} from "../../Constants";
 
 const LoginScreen = () => {
     const [username, setUsername] = useState('');
@@ -24,6 +25,19 @@ const LoginScreen = () => {
         connectVoximplant();
     }, []);
 
+    const signIn = async () => {
+        const fqUsername = `${username}@${APP_NAME}.${ACC_NAME}.voximplant.com`;
+        const login = async () => {
+            try {
+                await voximplant.login(fqUsername, password);
+                navigation.reset({index: 0, routes: [{name: 'Contacts'}]});
+            } catch (e) {
+                Alert.alert(e.name, `Error code: ${e.code}`);
+            }
+        };
+        login();
+    }
+
     return (
         <View className="bg-gray-100 h-screen w-full pt-10 items-start justify-center px-5 space-y-3">
             <Text className="uppercase text-3xl font-semibold text-gray-700">LOGIN</Text>
@@ -34,7 +48,7 @@ const LoginScreen = () => {
                 <TextInput value={password} onChangeText={(e) => setPassword(e)} secureTextEntry={true} placeholder={'Password'} />
             </View>
 
-            <TouchableOpacity className="bg-blue-400 w-full items-center justify-center py-2 rounded-lg" activeOpacity={0.7}>
+            <TouchableOpacity onPress={signIn} className="bg-blue-400 w-full items-center justify-center py-2 rounded-lg" activeOpacity={0.7}>
                 <Text className="font-semibold text-white">Sign In</Text>
             </TouchableOpacity>
         </View>
