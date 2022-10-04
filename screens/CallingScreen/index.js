@@ -56,11 +56,10 @@ const CallingScreen = () => {
         };
 
         const makeCall = async () => {
-            call.current = await voximplant.call(user.user_name, callSettings);
+            const call = await voximplant.call(user.user_name, callSettings);
+            // console.log(call, 'This is call 🔥');
         }
-
         makeCall();
-
     }, [permissionGranted]);
 
     return (
