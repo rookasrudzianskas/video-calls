@@ -19,6 +19,7 @@ const CallingScreen = () => {
     const route = useRoute();
     const user = route?.params?.user;
     const [permissionGranted, setPermissionGranted] = useState(false);
+    const [callStatus, setCallStatus] = useState('Initializing...');
     const voximplant = Voximplant.getInstance();
 
     const requestPermissions = async () => {
@@ -69,6 +70,10 @@ const CallingScreen = () => {
                 // console.warn('Failed 🔴');
                 // console.warn(callEvent);
             });
+
+            call.on(Voximplant.CallEvents.ProgressToneStart, callEvent => {
+                setCallStatus('Calling...');
+            });
         }
 
         const showError = ( error) => {
@@ -93,7 +98,7 @@ const CallingScreen = () => {
             </TouchableOpacity>
             <View className="mt-32 flex-1">
                 <Text className="text-2xl text-white font-bold text-center">{user?.user_display_name || 'Loading...'} ❤️</Text>
-                <Text className="text-[19px] text-gray-400 font-[500] mt-1 animate-pulse">ringing +31 0343 3423 349</Text>
+                <Text className="text-[19px] text-gray-400 font-[500] mt-1 animate-pulse">{callStatus}</Text>
             </View>
             <CallActionBox />
         </View>
