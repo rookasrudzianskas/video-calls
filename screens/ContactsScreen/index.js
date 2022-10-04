@@ -2,12 +2,16 @@ import {Text, View, StyleSheet, FlatList, TextInput, TouchableOpacity} from 'rea
 import ContactsData from '../../data/contacts.json';
 import { Ionicons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 const ContactsScreen = () => {
     // const contacts = ['Rokas', 'Tom', 'James', 'Steve', 'Jen', 'Kukulis'];
     const [searchTerm, setSearchTerm] = useState('');
     const [filteredContacts, setFilteredContacts] = useState(ContactsData);
+
+    useEffect(() => {
+
+    }, [searchTerm]);
 
 
     return (
@@ -26,7 +30,7 @@ const ContactsScreen = () => {
                 <TextInput value={searchTerm} onChangeText={(e) => setSearchTerm(e)} placeholder={"Search"} />
             </View>
             <FlatList data={filteredContacts} renderItem={({item}) => {
-                return <Text className="text-black text-lg">{item.user_display_name}</Text>
+                return <Text className="text-black text-lg my-1">{item.user_display_name}</Text>
             }}
                       ItemSeparatorComponent={() => (
                           <View style={{ backgroundColor: "#f0f0f0", height: 1 }} />
