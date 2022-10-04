@@ -34,12 +34,12 @@ const ContactsScreen = () => {
                     <TextInput value={searchTerm} onChangeText={(e) => setSearchTerm(e)} placeholder={"Search"} />
                 </View>
             </View>
-            <View className="p-[15px]">
+            <View className="p-[15px] bg-white h-screen">
                 <FlatList data={filteredContacts} renderItem={({item}) => {
                     return <Text className="text-black text-lg my-1">{item.user_display_name}</Text>
                 }}
                           ItemSeparatorComponent={() => (
-                              <View style={{ backgroundColor: "#f0f0f0", height: 1 }} />
+                              <View style={{ backgroundColor: "#cecece", height: 1 }} />
                           )}
                           showsVerticalScrollIndicator={false}
                 />

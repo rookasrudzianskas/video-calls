@@ -12,7 +12,7 @@ const HomeScreen = () => {
             {/*<ContactsScreen />*/}
             {/*<CallingScreen />*/}
             {/*<IncomingCallScreen />*/}
-            <CallScreen />
+            {/*<CallScreen />*/}
         </View>
     );
 };

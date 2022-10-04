@@ -2,16 +2,16 @@ import { StatusBar } from 'expo-status-bar';
 import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import HomeScreen from "./screens/HomeScreen";
 import {NavigationContainer} from "@react-navigation/native";
-import Index from "./navigation";
+import Navigation from "./navigation";
 
 export default function App() {
   return (
       // <SafeAreaView className="">
-      <View className="">
+      <>
           {/*<HomeScreen />*/}
-          <Index />
+          <Navigation />
           <StatusBar style="auto" />
-      </View>
+      </>
       // </SafeAreaView>
   );
 }

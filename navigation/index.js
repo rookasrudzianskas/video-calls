@@ -1,15 +1,15 @@
+// In App.js in a new project
+
 import * as React from 'react';
+import { View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import HomeScreen from "../screens/HomeScreen";
 import ContactsScreen from "../screens/ContactsScreen";
+import CallScreen from "../screens/CallScreen";
 import CallingScreen from "../screens/CallingScreen";
-import {Text, View} from "react-native";
+import IncomingCallScreen from "../screens/IcomingCallScreen";
 
-const Stack = createNativeStackNavigator();
-
-
-function HomeScreenData() {
+function HomeScreen() {
     return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <Text>Home Screen</Text>
@@ -17,11 +17,21 @@ function HomeScreenData() {
     );
 }
 
+const Stack = createNativeStackNavigator();
 
-export default function Index() {
+function Navigation() {
     return (
         <NavigationContainer>
-           <CallingScreen />
+            <Stack.Navigator initialRouteName={"ContactsScreen"}>
+                <Stack.Group screenOptions={{ headerShown: false }}>
+                    <Stack.Screen name="ContactsScreen" component={ContactsScreen} />
+                    <Stack.Screen name="CallScreen" component={CallScreen} />
+                    <Stack.Screen name="CallingScreen" component={CallingScreen} />
+                    <Stack.Screen name="IncomingCallScreen" component={IncomingCallScreen} />
+                </Stack.Group>
+            </Stack.Navigator>
         </NavigationContainer>
     );
 }
+
+export default Navigation;
