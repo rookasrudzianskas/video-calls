@@ -55,9 +55,28 @@ const CallingScreen = () => {
             },
         };
 
+        let call;
+
         const makeCall = async () => {
-            const call = await voximplant.call(user.user_name, callSettings);
+            call = await voximplant.call(user.user_name, callSettings);
+            subscribeToCallEvents();
             // console.log(call, 'This is call 🔥');
+        };
+
+        const subscribeToCallEvents = () => {
+            call.on(Voximplant.CallEvents.Failed, callEvent => {
+                showError(callEvent.error);
+                console.warn('Failed 🔴');
+            });
+        }
+
+        const showError = ( error) => {
+            Alert.alert("Call Failed", `Reason ${error}`, {
+                text: "OK",
+                onPress: () => {
+                    navigation.goBack();
+                }
+            });
         }
         makeCall();
     }, [permissionGranted]);
