@@ -39,10 +39,6 @@ const LoginScreen = () => {
         login();
     }
 
-    const redirectHome = () => {
-        navigation.navigate('ContactsScreen');
-    }
-
     return (
         <View className="bg-gray-100 h-screen w-full pt-10 items-start justify-center px-5 space-y-3">
             <Text className="uppercase text-3xl font-semibold text-gray-700">LOGIN</Text>
