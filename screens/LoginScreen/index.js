@@ -18,7 +18,7 @@ const LoginScreen = () => {
             if (clientState === Voximplant.ClientState.DISCONNECTED) {
                 await voximplant.connect();
             } else if (clientState === Voximplant.ClientState.LOGGED_IN) {
-                navigation.reset({index: 0, routes: [{name: 'Contacts'}]});
+                navigation.reset({index: 0, routes: [{name: 'ContactsScreen'}]});
                 return;
             }
         };
@@ -30,12 +30,17 @@ const LoginScreen = () => {
         const login = async () => {
             try {
                 await voximplant.login(fqUsername, password);
-                navigation.reset({index: 0, routes: [{name: 'Contacts'}]});
+                // redirectHome();
+                navigation.reset({index: 0, routes: [{name: 'ContactsScreen'}]});
             } catch (e) {
                 Alert.alert(e.name, `Error code: ${e.code}`);
             }
         };
         login();
+    }
+
+    const redirectHome = () => {
+        navigation.navigate('ContactsScreen');
     }
 
     return (
