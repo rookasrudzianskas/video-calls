@@ -10,7 +10,10 @@ const ContactsScreen = () => {
     const [filteredContacts, setFilteredContacts] = useState(ContactsData);
 
     useEffect(() => {
-
+        const newContacts = ContactsData.filter((contact) => {
+            return contact.user_display_name.toLowerCase().includes(searchTerm.toLowerCase());
+        });
+        setFilteredContacts(newContacts);
     }, [searchTerm]);
 
 
