@@ -20,10 +20,6 @@ const CallActionBox = ({onHangupPress}) => {
         // console.warn('Toggle Microphone');
     }
 
-    const onHangup = () => {
-        console.warn('Hangup');
-    }
-
     return (
         <View className="flex-col h-60 bg-gray-900/90 w-full rounded-t-xl">
             <TouchableOpacity className="flex-row justify-center mt-3">
@@ -50,7 +46,7 @@ const CallActionBox = ({onHangupPress}) => {
                     )}
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={onHangup} activeOpacity={0.7} className="w-16 flex-row items-center justify-center rounded-full h-16 bg-red-500">
+                <TouchableOpacity onPress={onHangupPress} activeOpacity={0.7} className="w-16 flex-row items-center justify-center rounded-full h-16 bg-red-500">
                     <Ionicons name="call-sharp" className="rotate-90" size={28} color="white" />
                 </TouchableOpacity>
             </View>

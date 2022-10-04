@@ -1,5 +1,5 @@
 import { Camera, CameraType } from 'expo-camera';
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {Alert, Button, PermissionsAndroid, Platform, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {Feather, Ionicons, SimpleLineIcons} from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -21,6 +21,7 @@ const CallingScreen = () => {
     const [permissionGranted, setPermissionGranted] = useState(false);
     const [callStatus, setCallStatus] = useState('Initializing...');
     const voximplant = Voximplant.getInstance();
+    const call = useRef();
 
     const requestPermissions = async () => {
         const granted = await PermissionsAndroid.requestMultiple(permissions);
@@ -56,30 +57,29 @@ const CallingScreen = () => {
             },
         };
 
-        let call;
 
         const makeCall = async () => {
-            call = await voximplant.call(user.user_name, callSettings);
+            call.current = await voximplant.call(user.user_name, callSettings);
             subscribeToCallEvents();
             // console.log(call, 'This is call 🔥');
         };
 
         const subscribeToCallEvents = () => {
-            call.on(Voximplant.CallEvents.Failed, callEvent => {
+            call.current.on(Voximplant.CallEvents.Failed, callEvent => {
                 showError(callEvent.reason);
                 // console.warn('Failed 🔴');
                 // console.warn(callEvent);
             });
 
-            call.on(Voximplant.CallEvents.ProgressToneStart, callEvent => {
+            call.current.on(Voximplant.CallEvents.ProgressToneStart, callEvent => {
                 setCallStatus('Calling...');
             });
 
-            call.on(Voximplant.CallEvents.Connected, callEvent => {
+            call.current.on(Voximplant.CallEvents.Connected, callEvent => {
                 setCallStatus('Connected');
             });
 
-            call.on(Voximplant.CallEvents.Disconnected, callEvent => {
+            call.current.on(Voximplant.CallEvents.Disconnected, callEvent => {
                 setCallStatus('Disconnected');
                 navigation.navigate('ContactsScreen');
             });
@@ -96,16 +96,17 @@ const CallingScreen = () => {
         makeCall();
 
         return () => {
-            call.off(Voximplant.CallEvents.Failed);
-            call.off(Voximplant.CallEvents.ProgressToneStart);
-            call.off(Voximplant.CallEvents.Connected);
-            call.off(Voximplant.CallEvents.Disconnected);
+            call.current.off(Voximplant.CallEvents.Failed);
+            call.current.off(Voximplant.CallEvents.ProgressToneStart);
+            call.current.off(Voximplant.CallEvents.Connected);
+            call.current.off(Voximplant.CallEvents.Disconnected);
         }
     }, [permissionGranted]);
 
     const onHangupPress = () => {
-
-    }
+        // console.warn('Hangup Pressed');
+        call.current.hangup();
+    };
 
     return (
         <View className="pt-16 h-screen items-center bg-blue-200">
