@@ -9,8 +9,8 @@ const HomeScreen = () => {
     return (
         <View>
             {/*<ContactsScreen />*/}
-            {/*<CallingScreen />*/}
-            <IncomingCallScreen />
+            <CallingScreen />
+            {/*<IncomingCallScreen />*/}
         </View>
     );
 };
