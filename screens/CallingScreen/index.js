@@ -79,6 +79,10 @@ const CallingScreen = () => {
             });
         }
         makeCall();
+
+        return () => {
+            call.off(Voximplant.CallEvents.Failed);
+        }
     }, [permissionGranted]);
 
     return (
