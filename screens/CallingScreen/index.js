@@ -28,7 +28,7 @@ const CallingScreen = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity activeOpacity={0.7} className="w-16 flex-row items-center justify-center rounded-full h-16 bg-red-500">
-                        <Ionicons name="call-sharp" size={28} color="white" />
+                        <Ionicons name="call-sharp" className="rotate-90" size={28} color="white" />
                     </TouchableOpacity>
                 </View>
             </View>
