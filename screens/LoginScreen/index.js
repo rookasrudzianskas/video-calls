@@ -1,9 +1,12 @@
 import React, {useState} from 'react';
 import {Text, View, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
+import {Voximplant} from 'react-native-voximplant';
 
 const LoginScreen = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+
+    const voximplant = Voximplant.getInstance();
 
     return (
         <View className="bg-gray-100 h-screen w-full pt-10 items-start justify-center px-5 space-y-3">
