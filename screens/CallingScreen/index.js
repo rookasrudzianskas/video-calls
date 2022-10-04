@@ -1,5 +1,6 @@
-import React from 'react';
-import {Text, View, StyleSheet} from 'react-native';
+import { Camera, CameraType } from 'expo-camera';
+import { useState } from 'react';
+import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 const CallingScreen = () => {
     return (
