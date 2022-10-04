@@ -24,6 +24,7 @@ const CallingScreen = () => {
     const [remoteVideoStreamId, setRemoteVideoStreamId] = useState('');
     const voximplant = Voximplant.getInstance();
     const call = useRef(incomingCall);
+    const endpoint = useRef(null);
 
     const requestPermissions = async () => {
         const granted = await PermissionsAndroid.requestMultiple(permissions);
@@ -91,9 +92,24 @@ const CallingScreen = () => {
                 setCallStatus('Disconnected');
                 navigation.navigate('ContactsScreen');
             });
+
             call.current.on(Voximplant.CallEvents.LocalVideoStreamAdded, callEvent => {
                 setLocalVideoStreamId(callEvent.videoStream.id);
             });
+
+            call.current.on(Voximplant.CallEvents.EndpointAdded, callEvent => {
+                endpoint.current = callEvent.endpoint;
+                subscribeToEndpointEvents();
+            });
+        }
+
+        const subscribeToEndpointEvents = async () => {
+            endpoint.current.on(
+                Voximplant.EndpointEvents.RemoteVideoStreamAdded,
+                endpointEvent => {
+                    setRemoteVideoStreamId(endpointEvent.videoStream.id);
+                }
+            );
         }
 
         const showError = ( error) => {
