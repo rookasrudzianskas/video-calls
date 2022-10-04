@@ -4,12 +4,25 @@ import { Ionicons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import {useEffect, useState} from "react";
 import {useNavigation} from "@react-navigation/native";
+import {Voximplant} from "react-native-voximplant";
 
 const ContactsScreen = () => {
     // const contacts = ['Rokas', 'Tom', 'James', 'Steve', 'Jen', 'Kukulis'];
     const [searchTerm, setSearchTerm] = useState('');
     const [filteredContacts, setFilteredContacts] = useState(ContactsData);
     const navigation = useNavigation();
+    const voximplant = Voximplant.getInstance();
+
+    useEffect(() => {
+        voximplant.on(Voximplant.ClientEvents.IncomingCall, incomingCallEvent => {
+            navigation.navigate('IncomingCall', {
+                call: incomingCallEvent.call,
+            });
+        });
+        return () => {
+            voximplant.off(Voximplant.ClientEvents.IncomingCall);
+        };
+    }, []);
 
     useEffect(() => {
         const newContacts = ContactsData.filter((contact) => {
