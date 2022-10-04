@@ -13,6 +13,7 @@ const LoginScreen = () => {
     useEffect(() => {
         const connectVoximplant = async () => {
             let clientState = await voximplant.getClientState();
+            console.warn(clientState);
             if (clientState === Voximplant.ClientState.DISCONNECTED) {
             await voximplant.connect();
         } else if (clientState === Voximplant.ClientState.LOGGED_IN) {
@@ -25,7 +26,7 @@ const LoginScreen = () => {
 
     return (
         <View className="bg-gray-100 h-screen w-full pt-10 items-start justify-center px-5 space-y-3">
-            <Text className="uppercase text-3xl font-semibold text-gray-700">Login</Text>
+            <Text className="uppercase text-3xl font-semibold text-gray-700">LOGIN</Text>
             <View className="bg-white w-full py-2 px-2 rounded-lg border border-blue-500/30">
                 <TextInput autoCapitalize={false} value={username} onChangeText={(e) => setUsername(e)} placeholder={'Username'} />
             </View>
