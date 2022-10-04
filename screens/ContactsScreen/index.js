@@ -8,6 +8,7 @@ const ContactsScreen = () => {
     // const contacts = ['Rokas', 'Tom', 'James', 'Steve', 'Jen', 'Kukulis'];
     const [searchTerm, setSearchTerm] = useState('');
 
+
     return (
         <View className="">
             <View className="flex-row items-center justify-between mb-4">
