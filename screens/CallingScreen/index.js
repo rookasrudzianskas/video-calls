@@ -103,6 +103,10 @@ const CallingScreen = () => {
         }
     }, [permissionGranted]);
 
+    const onHangupPress = () => {
+
+    }
+
     return (
         <View className="pt-16 h-screen items-center bg-blue-200">
             <TouchableOpacity onPress={() => navigation.goBack()} className="w-full items-start">
@@ -112,7 +116,7 @@ const CallingScreen = () => {
                 <Text className="text-2xl text-white font-bold text-center">{user?.user_display_name || 'Loading...'} ❤️</Text>
                 <Text className="text-[19px] text-gray-400 font-[500] mt-1 animate-pulse">{callStatus}</Text>
             </View>
-            <CallActionBox />
+            <CallActionBox onHangupPress={onHangupPress} />
         </View>
     );
 };

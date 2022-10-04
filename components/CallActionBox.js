@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
 import {Feather, Ionicons, MaterialIcons, SimpleLineIcons} from "@expo/vector-icons";
 
-const CallActionBox = () => {
+const CallActionBox = ({onHangupPress}) => {
     const [isCameraOn, setIsCameraOn] = useState(true);
     const [isMicOn, setIsMicOn] = useState(true);
 
