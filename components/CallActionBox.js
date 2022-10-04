@@ -11,13 +11,13 @@ const CallActionBox = () => {
     }
 
     const onToggleCamera = () => {
-        setIsCameraOn(!isCameraOn);
-        console.warn('Toggle Camera');
+        setIsCameraOn((currentValue) => !currentValue);
+        // console.warn('Toggle Camera');
     }
 
     const onToggleMicrophone = () => {
-        setIsMicOn(!isMicOn);
-        console.warn('Toggle Microphone');
+        setIsMicOn((currentValue) => !currentValue);
+        // console.warn('Toggle Microphone');
     }
 
     const onHangup = () => {
