@@ -18,7 +18,7 @@ const CallingScreen = () => {
                 <Ionicons name="ios-chevron-back" size={30} color="white" />
             </TouchableOpacity>
             <View className="mt-32 flex-1">
-                <Text className="text-2xl text-white font-bold text-center">{user?.user_display_name || 'Loading...'} //:</Text>
+                <Text className="text-2xl text-white font-bold text-center">{user?.user_display_name || 'Loading...'} ❤️</Text>
                 <Text className="text-[19px] text-gray-400 font-[500] mt-1 animate-pulse">ringing +31 0343 3423 349</Text>
             </View>
             <CallActionBox />
