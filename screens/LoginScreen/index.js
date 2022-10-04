@@ -13,14 +13,14 @@ const LoginScreen = () => {
     useEffect(() => {
         const connectVoximplant = async () => {
             let clientState = await voximplant.getClientState();
-            console.warn(clientState);
+            // console.warn(clientState);
             if (clientState === Voximplant.ClientState.DISCONNECTED) {
-            await voximplant.connect();
-        } else if (clientState === Voximplant.ClientState.LOGGED_IN) {
-            navigation.reset({index: 0, routes: [{name: 'Contacts'}]});
-            return;
-        }
-    };
+                await voximplant.connect();
+            } else if (clientState === Voximplant.ClientState.LOGGED_IN) {
+                navigation.reset({index: 0, routes: [{name: 'Contacts'}]});
+                return;
+            }
+        };
         connectVoximplant();
     }, []);
 
