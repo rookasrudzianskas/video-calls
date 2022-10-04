@@ -150,7 +150,11 @@ export default CallingScreen;
 const styles = StyleSheet.create({
    selfView: {
        width: 100,
-       height: 100,
+       height: 150,
+       backgroundColor: '#ffff6e',
        position: 'absolute',
+       borderRadius: 10,
+       right: 10,
+       top: 100,
    }
 });
