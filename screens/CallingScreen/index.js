@@ -1,16 +1,45 @@
 import { Camera, CameraType } from 'expo-camera';
-import React, { useState } from 'react';
-import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {Alert, Button, PermissionsAndroid, Platform, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {Feather, Ionicons, SimpleLineIcons} from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import CallActionBox from "../../components/CallActionBox";
 import {useNavigation, useRoute} from "@react-navigation/native";
 
 
+const permissions = [
+    PermissionsAndroid.PERMISSIONS.RECORD_AUDIO,
+    PermissionsAndroid.PERMISSIONS.CAMERA,
+];
+
+
 const CallingScreen = () => {
     const navigation = useNavigation();
     const route = useRoute();
     const user = route?.params?.user;
+    const [permissionGranted, setPermissionGranted] = useState(false);
+
+    const requestPermissions = async () => {
+        const granted = await PermissionsAndroid.requestMultiple(permissions);
+        const recordAudioGranted =
+            granted[PermissionsAndroid.PERMISSIONS.RECORD_AUDIO] === 'granted';
+        const cameraGranted =
+            granted[PermissionsAndroid.PERMISSIONS.CAMERA] === 'granted';
+        if (!cameraGranted || !recordAudioGranted) {
+            Alert.alert('Permissions not granted');
+        } else {
+            setPermissionGranted(true);
+        }
+    };
+
+    useEffect(() => {
+        if (Platform.OS === 'android') {
+            requestPermissions();
+        }
+        else {
+            setPermissionGranted(true);
+        }
+    }, []);
 
     return (
         <View className="pt-16 h-screen items-center bg-blue-200">
