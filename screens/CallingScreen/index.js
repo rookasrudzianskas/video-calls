@@ -5,6 +5,7 @@ import {Feather, Ionicons, SimpleLineIcons} from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import CallActionBox from "../../components/CallActionBox";
 import {useNavigation, useRoute} from "@react-navigation/native";
+import {Voximplant} from "react-native-voximplant";
 
 
 const permissions = [
@@ -18,6 +19,7 @@ const CallingScreen = () => {
     const route = useRoute();
     const user = route?.params?.user;
     const [permissionGranted, setPermissionGranted] = useState(false);
+    const voximplant = Voximplant.getInstance();
 
     const requestPermissions = async () => {
         const granted = await PermissionsAndroid.requestMultiple(permissions);
@@ -40,6 +42,26 @@ const CallingScreen = () => {
             setPermissionGranted(true);
         }
     }, []);
+
+    const callSettings = {
+        video: {
+            sendVideo: true,
+            receiveVideo: true,
+        },
+    };
+
+    useEffect(() => {
+        if(!permissionGranted) {
+            return;
+        }
+
+        const makeCall = async () => {
+            call.current = await voximplant.call(user.user_name, callSettings);
+        }
+
+        makeCall();
+
+    }, [permissionGranted]);
 
     return (
         <View className="pt-16 h-screen items-center bg-blue-200">
