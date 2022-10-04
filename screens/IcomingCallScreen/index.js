@@ -10,11 +10,16 @@ import {
     SimpleLineIcons
 } from "@expo/vector-icons";
 import BackgroundIos from '../../assets/images/ios_bg.png';
+import {useNavigation, useRoute} from "@react-navigation/native";
 
 const IncomingCallScreen = () => {
+    const navigation = useNavigation();
+    const route = useRoute();
+    const {call} = route.params;
 
     const onDecline = () => {
-        console.warn('Decline');
+        // console.warn('Decline');
+        call.decline();
     }
 
     const onAccept = () => {
