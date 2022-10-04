@@ -43,17 +43,17 @@ const CallingScreen = () => {
         }
     }, []);
 
-    const callSettings = {
-        video: {
-            sendVideo: true,
-            receiveVideo: true,
-        },
-    };
-
     useEffect(() => {
         if(!permissionGranted) {
             return;
         }
+
+        const callSettings = {
+            video: {
+                sendVideo: true,
+                receiveVideo: true,
+            },
+        };
 
         const makeCall = async () => {
             call.current = await voximplant.call(user.user_name, callSettings);
