@@ -4,12 +4,15 @@ import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import {Feather, Ionicons, SimpleLineIcons} from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import CallActionBox from "../../components/CallActionBox";
+import {useNavigation} from "@react-navigation/native";
 
 
 const CallingScreen = () => {
+    const navigation = useNavigation();
+
     return (
         <View className="pt-16 h-screen items-center bg-blue-200">
-            <TouchableOpacity className="w-full items-start" activeOpacity={0.7}>
+            <TouchableOpacity onPress={() => navigation.goBack()} className="w-full items-start">
                 <Ionicons name="ios-chevron-back" size={30} color="white" />
             </TouchableOpacity>
             <View className="mt-32 flex-1">

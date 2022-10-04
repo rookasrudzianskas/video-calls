@@ -3,11 +3,13 @@ import ContactsData from '../../data/contacts.json';
 import { Ionicons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import {useEffect, useState} from "react";
+import {useNavigation} from "@react-navigation/native";
 
 const ContactsScreen = () => {
     // const contacts = ['Rokas', 'Tom', 'James', 'Steve', 'Jen', 'Kukulis'];
     const [searchTerm, setSearchTerm] = useState('');
     const [filteredContacts, setFilteredContacts] = useState(ContactsData);
+    const navigation = useNavigation();
 
     useEffect(() => {
         const newContacts = ContactsData.filter((contact) => {
@@ -15,6 +17,14 @@ const ContactsScreen = () => {
         });
         setFilteredContacts(newContacts);
     }, [searchTerm]);
+
+    const callUser = user => {
+        // console.warn(user)
+        navigation.navigate('CallingScreen', {
+            user: user,
+        });
+
+    }
 
 
     return (
@@ -36,7 +46,11 @@ const ContactsScreen = () => {
             </View>
             <View className="p-[15px] bg-white h-screen">
                 <FlatList data={filteredContacts} renderItem={({item}) => {
-                    return <Text className="text-black text-lg my-1">{item.user_display_name}</Text>
+                    return (
+                        <TouchableOpacity onPress={() => callUser(item)} activeOpacity={0.7}>
+                            <Text className="text-black text-lg my-1">{item.user_display_name}</Text>
+                        </TouchableOpacity>
+                    )
                 }}
                           ItemSeparatorComponent={() => (
                               <View style={{ backgroundColor: "#cecece", height: 1 }} />
