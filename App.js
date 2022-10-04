@@ -4,12 +4,12 @@ import HomeScreen from "./screens/HomeScreen";
 
 export default function App() {
   return (
-      <SafeAreaView className="">
-          <View className="p-[15px]">
+      // <SafeAreaView className="">
+          <View className="">
               <HomeScreen />
               <StatusBar style="auto" />
           </View>
-      </SafeAreaView>
+      // </SafeAreaView>
   );
 }
 
