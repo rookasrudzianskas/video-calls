@@ -69,6 +69,8 @@ const CallingScreen = () => {
 
         const answerCall = async () => {
             subscribeToCallEvents();
+            endpoint.current = call.current.getEndpoints()[0];
+            subscribeToEndpointEvents();
             await call.current.answer(callSettings);
         }
 
@@ -150,6 +152,11 @@ const CallingScreen = () => {
                     style={styles.selfView}
                     videoStreamId={localVideoStreamId}
                 />
+
+                <Voximplant.VideoView
+                    style={styles.remoteVideo}
+                    videoStreamId={remoteVideoStreamId}
+                />
             {/*</View>*/}
             <View className="mt-32 flex-1">
                 <Text className="text-2xl text-white font-bold text-center">{user?.user_display_name || 'Loading...'} ❤️</Text>
@@ -172,5 +179,16 @@ const styles = StyleSheet.create({
        borderRadius: 10,
        right: 10,
        top: 100,
-   }
+   },
+    remoteVideo: {
+        // width: 200,
+        height: '100%',
+        backgroundColor: '#ffff6e',
+        position: 'absolute',
+        borderRadius: 10,
+        left: 0,
+        right: 0,
+        top: 0,
+        bottom: 0,
+    }
 });
