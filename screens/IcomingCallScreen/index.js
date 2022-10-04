@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Text, View, StyleSheet, TouchableOpacity, ImageBackground} from 'react-native';
 import {
     AntDesign,
@@ -11,11 +11,19 @@ import {
 } from "@expo/vector-icons";
 import BackgroundIos from '../../assets/images/ios_bg.png';
 import {useNavigation, useRoute} from "@react-navigation/native";
+import {Voximplant} from "react-native-voximplant";
 
 const IncomingCallScreen = () => {
     const navigation = useNavigation();
     const route = useRoute();
     const {call} = route.params;
+
+    useEffect(() => {
+        call.current.on(Voximplant.CallEvents.Disconnected, callEvent => {
+            // setCallStatus('Disconnected');
+            navigation.navigate('ContactsScreen');
+        });
+    }, []);
 
     const onDecline = () => {
         // console.warn('Decline');
