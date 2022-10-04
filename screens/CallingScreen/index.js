@@ -20,6 +20,8 @@ const CallingScreen = () => {
     const {user, call: incomingCall, isIncomingCall} = route?.params;
     const [permissionGranted, setPermissionGranted] = useState(false);
     const [callStatus, setCallStatus] = useState('Initializing...');
+    const [localVideoStreamId, setLocalVideoStreamId] = useState('');
+    const [remoteVideoStreamId, setRemoteVideoStreamId] = useState('');
     const voximplant = Voximplant.getInstance();
     const call = useRef(incomingCall);
 
@@ -89,6 +91,9 @@ const CallingScreen = () => {
                 setCallStatus('Disconnected');
                 navigation.navigate('ContactsScreen');
             });
+            call.current.on(Voximplant.CallEvents.LocalVideoStreamAdded, callEvent => {
+                setLocalVideoStreamId(callEvent.videoStream.id);
+            });
         }
 
         const showError = ( error) => {
@@ -124,6 +129,12 @@ const CallingScreen = () => {
             <TouchableOpacity onPress={() => navigation.goBack()} className="w-full items-start">
                 <Ionicons name="ios-chevron-back" size={30} color="white" />
             </TouchableOpacity>
+            {/*<View className="w-[100px] h-[100px] bg-red-500">*/}
+                <Voximplant.VideoView
+                    style={styles.selfView}
+                    videoStreamId={localVideoStreamId}
+                />
+            {/*</View>*/}
             <View className="mt-32 flex-1">
                 <Text className="text-2xl text-white font-bold text-center">{user?.user_display_name || 'Loading...'} ❤️</Text>
                 <Text className="text-[19px] text-gray-400 font-[500] mt-1 animate-pulse">{callStatus}</Text>
@@ -134,3 +145,12 @@ const CallingScreen = () => {
 };
 
 export default CallingScreen;
+
+
+const styles = StyleSheet.create({
+   selfView: {
+       width: 100,
+       height: 100,
+       position: 'absolute',
+   }
+});
