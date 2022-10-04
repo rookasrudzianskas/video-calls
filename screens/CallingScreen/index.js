@@ -17,11 +17,11 @@ const permissions = [
 const CallingScreen = () => {
     const navigation = useNavigation();
     const route = useRoute();
-    const user = route?.params?.user;
+    const {user, call: incomingCallData, isIncomingCall} = route?.params?.user;
     const [permissionGranted, setPermissionGranted] = useState(false);
     const [callStatus, setCallStatus] = useState('Initializing...');
     const voximplant = Voximplant.getInstance();
-    const call = useRef();
+    const call = useRef(incomingCallData);
 
     const requestPermissions = async () => {
         const granted = await PermissionsAndroid.requestMultiple(permissions);
@@ -64,6 +64,11 @@ const CallingScreen = () => {
             // console.log(call, 'This is call 🔥');
         };
 
+        const answerCall = async () => {
+            subscribeToCallEvents();
+            await call.current.answer(callSettings);
+        }
+
         const subscribeToCallEvents = () => {
             call.current.on(Voximplant.CallEvents.Failed, callEvent => {
                 showError(callEvent.reason);
@@ -94,6 +99,13 @@ const CallingScreen = () => {
                 }
             });
         }
+
+        if(isIncomingCall) {
+            answerCall();
+        } else {
+            makeCall();
+        }
+
         makeCall();
 
         return () => {
