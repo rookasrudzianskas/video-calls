@@ -248,6 +248,9 @@ PODS:
     - RCTTypeSafety
     - React
     - ReactCommon/turbomodule/core
+  - react-native-voximplant (1.34.0):
+    - React
+    - VoxImplantSDK (= 2.46.9)
   - React-perflogger (0.69.6)
   - React-RCTActionSheet (0.69.6):
     - React-Core/RCTActionSheetHeaders (= 0.69.6)
@@ -317,6 +320,11 @@ PODS:
   - RNScreens (3.15.0):
     - React-Core
     - React-RCTImage
+  - VoxImplantSDK (2.46.9):
+    - VoxImplantSDK/Core (= 2.46.9)
+  - VoxImplantSDK/Core (2.46.9):
+    - VoxImplantWebRTC (= 93.0.0)
+  - VoxImplantWebRTC (93.0.0)
   - Yoga (1.14.0)
 
 DEPENDENCIES:
@@ -351,6 +359,7 @@ DEPENDENCIES:
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
+  - react-native-voximplant (from `../node_modules/react-native-voximplant`)
   - React-perflogger (from `../node_modules/react-native/ReactCommon/reactperflogger`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
   - React-RCTAnimation (from `../node_modules/react-native/Libraries/NativeAnimation`)
@@ -369,6 +378,8 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - fmt
+    - VoxImplantSDK
+    - VoxImplantWebRTC
 
 EXTERNAL SOURCES:
   boost:
@@ -431,6 +442,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/logger"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
+  react-native-voximplant:
+    :path: "../node_modules/react-native-voximplant"
   React-perflogger:
     :path: "../node_modules/react-native/ReactCommon/reactperflogger"
   React-RCTActionSheet:
@@ -492,6 +505,7 @@ SPEC CHECKSUMS:
   React-jsinspector: eaacb698c5af7a99131bc1933806372c20222dfd
   React-logger: ebb4d31bbbe4f1a8a1a9b658d7429210b8f68160
   react-native-safe-area-context: 6c12e3859b6f27b25de4fee8201cfb858432d8de
+  react-native-voximplant: 99f0d53b0de89c0ad955b8c3f539ac7dd0ca9778
   React-perflogger: 1fb1ad5333b43a5137afd7608695f7a42c5efd27
   React-RCTActionSheet: a435bd67689433575a1e5d7614b021d2c17f0726
   React-RCTAnimation: d097c5ed2d00735958508617555abd85183b94e2
@@ -505,6 +519,8 @@ SPEC CHECKSUMS:
   React-runtimeexecutor: 0af71c94f968fa10015bf0119951bccd2e4d8865
   ReactCommon: fe7580b9d10f00249facf25659e0ec051320cc8a
   RNScreens: 4a1af06327774490d97342c00aee0c2bafb497b7
+  VoxImplantSDK: 3217e2a4fb8863e0315111c8353f4e09da580ca6
+  VoxImplantWebRTC: 8ddd8a63d0c20afa604fec22a2552c32b0371974
   Yoga: 75bf4b0131cfb46a659cd0c13309b79a6fcff66d
 
 PODFILE CHECKSUM: 21262c5ad311b9eefc75eb6c81fde90abae93af7
