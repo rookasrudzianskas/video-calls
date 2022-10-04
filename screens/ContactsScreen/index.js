@@ -7,6 +7,7 @@ import {useState} from "react";
 const ContactsScreen = () => {
     // const contacts = ['Rokas', 'Tom', 'James', 'Steve', 'Jen', 'Kukulis'];
     const [searchTerm, setSearchTerm] = useState('');
+    const [filteredContacts, setFilteredContacts] = useState(ContactsData);
 
 
     return (
@@ -24,7 +25,7 @@ const ContactsScreen = () => {
                 <Ionicons name="search" size={24} color="gray" className="ml-2" style={{marginLeft: 10}}/>
                 <TextInput value={searchTerm} onChangeText={(e) => setSearchTerm(e)} placeholder={"Search"} />
             </View>
-            <FlatList data={ContactsData} renderItem={({item}) => {
+            <FlatList data={filteredContacts} renderItem={({item}) => {
                 return <Text className="text-black text-lg">{item.user_display_name}</Text>
             }}
                       ItemSeparatorComponent={() => (
