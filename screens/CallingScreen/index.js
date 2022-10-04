@@ -12,7 +12,7 @@ const CallingScreen = () => {
                 <Text className="text-2xl text-white font-bold text-center">Rokas //:</Text>
                 <Text className="text-[19px] text-gray-400 font-[500] mt-1 animate-pulse">ringing +31 0343 3423 349</Text>
             </View>
-            <View className="flex-col h-64 bg-gray-900/90 w-full rounded-t-xl">
+            <View className="flex-col h-60 bg-gray-900/90 w-full rounded-t-xl">
                 <TouchableOpacity className="flex-row justify-center mt-3">
                     <SimpleLineIcons name="arrow-up" size={24} color="gray" />
                 </TouchableOpacity>
