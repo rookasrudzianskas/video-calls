@@ -60,7 +60,6 @@ const CallingScreen = () => {
             },
         };
 
-
         const makeCall = async () => {
             call.current = await voximplant.call(user.user_name, callSettings);
             subscribeToCallEvents();
