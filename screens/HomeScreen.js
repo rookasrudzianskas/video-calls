@@ -4,13 +4,15 @@ import ContactsList from "../components/ContactsList";
 import ContactsScreen from "./ContactsScreen";
 import CallingScreen from "./CallingScreen";
 import IncomingCallScreen from "./IcomingCallScreen";
+import CallScreen from "./CallScreen";
 
 const HomeScreen = () => {
     return (
         <View>
             {/*<ContactsScreen />*/}
-            <CallingScreen />
+            {/*<CallingScreen />*/}
             {/*<IncomingCallScreen />*/}
+            <CallScreen />
         </View>
     );
 };
