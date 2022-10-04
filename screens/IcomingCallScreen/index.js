@@ -19,7 +19,7 @@ const IncomingCallScreen = () => {
     const {call} = route.params;
 
     useEffect(() => {
-        call.current.on(Voximplant.CallEvents.Disconnected, callEvent => {
+        call.on(Voximplant.CallEvents.Disconnected, callEvent => {
             // setCallStatus('Disconnected');
             navigation.navigate('ContactsScreen');
         });

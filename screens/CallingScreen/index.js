@@ -67,6 +67,7 @@ const CallingScreen = () => {
         const subscribeToCallEvents = () => {
             call.current.on(Voximplant.CallEvents.Failed, callEvent => {
                 showError(callEvent.reason);
+                navigation.navigate('ContactsScreen');
                 // console.warn('Failed 🔴');
                 // console.warn(callEvent);
             });
