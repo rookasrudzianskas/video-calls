@@ -65,13 +65,14 @@ const CallingScreen = () => {
 
         const subscribeToCallEvents = () => {
             call.on(Voximplant.CallEvents.Failed, callEvent => {
-                showError(callEvent.error);
+                showError(callEvent.reason);
                 // console.warn('Failed 🔴');
+                // console.warn(callEvent);
             });
         }
 
         const showError = ( error) => {
-            Alert.alert("Call Failed", `Reason ${error}`, {
+            Alert.alert("Call Failed", `Reason - ${error}`, {
                 text: "OK",
                 onPress: () => {
                     navigation.navigate('ContactsScreen');
