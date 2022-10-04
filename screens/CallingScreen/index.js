@@ -3,6 +3,8 @@ import { useState } from 'react';
 import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import {Feather, Ionicons, SimpleLineIcons} from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
+
+
 const CallingScreen = () => {
     return (
         <View className="pt-16 h-screen items-center bg-blue-200">
