@@ -34,13 +34,19 @@ const IncomingCallScreen = () => {
                     </TouchableOpacity>
                 </View>
                 <View className="flex-row justify-between w-full mt-20">
-                    <TouchableOpacity activeOpacity={0.7} className="flex-col w-16 h-16 rounded-full bg-red-500 items-center justify-center ">
-                        <AntDesign name="close" size={35} color="white" />
-                    </TouchableOpacity>
+                    <View className="items-center justify-center">
+                        <TouchableOpacity activeOpacity={0.7} className="flex-col w-16 h-16 rounded-full bg-red-500 items-center justify-center ">
+                            <AntDesign name="close" size={35} color="white" />
+                        </TouchableOpacity>
+                        <Text className="text-white mt-2">Decline</Text>
+                    </View>
 
-                    <TouchableOpacity activeOpacity={0.7} className="flex-col w-16 h-16 rounded-full bg-blue-500 items-center justify-center ">
-                        <Ionicons name="checkmark" size={35} color="white" />
-                    </TouchableOpacity>
+                    <View className="items-center justify-center">
+                        <TouchableOpacity activeOpacity={0.7} className="flex-col w-16 h-16 rounded-full bg-blue-500 items-center justify-center ">
+                            <Ionicons name="checkmark" size={35} color="white" />
+                        </TouchableOpacity>
+                        <Text className="text-white mt-2">Accept</Text>
+                    </View>
                 </View>
             </View>
         </ImageBackground>
