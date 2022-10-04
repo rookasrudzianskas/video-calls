@@ -74,6 +74,15 @@ const CallingScreen = () => {
             call.on(Voximplant.CallEvents.ProgressToneStart, callEvent => {
                 setCallStatus('Calling...');
             });
+
+            call.on(Voximplant.CallEvents.Connected, callEvent => {
+                setCallStatus('Connected');
+            });
+
+            call.on(Voximplant.CallEvents.Disconnected, callEvent => {
+                setCallStatus('Disconnected');
+                navigation.navigate('ContactsScreen');
+            });
         }
 
         const showError = ( error) => {
@@ -88,6 +97,9 @@ const CallingScreen = () => {
 
         return () => {
             call.off(Voximplant.CallEvents.Failed);
+            call.off(Voximplant.CallEvents.ProgressToneStart);
+            call.off(Voximplant.CallEvents.Connected);
+            call.off(Voximplant.CallEvents.Disconnected);
         }
     }, [permissionGranted]);
 
