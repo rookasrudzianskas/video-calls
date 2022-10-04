@@ -39,7 +39,7 @@ const IncomingCallScreen = () => {
 
     const onAccept = () => {
         // console.warn('Accept');
-        navigation.navigate('CallingScreen', {call, incomingCall: true});
+        navigation.navigate('CallingScreen', {call: call, isIncomingCall: true});
     }
 
 
