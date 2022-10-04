@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Text, View, StyleSheet, TouchableOpacity, ImageBackground} from 'react-native';
 import {
     AntDesign,
@@ -17,12 +17,17 @@ const IncomingCallScreen = () => {
     const navigation = useNavigation();
     const route = useRoute();
     const {call} = route.params;
+    const [caller, setCaller] = useState(null);
 
     useEffect(() => {
         call.on(Voximplant.CallEvents.Disconnected, callEvent => {
             // setCallStatus('Disconnected');
             navigation.navigate('ContactsScreen');
         });
+
+        return () => {
+            call.off(Voximplant.CallEvents.Disconnected);
+        }
     }, []);
 
     const onDecline = () => {
