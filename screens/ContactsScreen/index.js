@@ -26,7 +26,6 @@ const ContactsScreen = () => {
 
     }
 
-
     return (
         <View className="">
             <View className="bg-gray-100 p-[15px] pt-[60px]">
